@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -19,5 +21,24 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         this.transform.Translate(speed*Time.deltaTime*Vector3.down);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            //have the player take damage
+            Player p = other.GetComponent<Player>();
+            p.takeDamage(damage);
+            //play a sound
+            //play a particle system explosion
+            Destroy(this.gameObject);
+        }
+
+        if (other.CompareTag("Ground"))
+        {
+            //play a sound and a particle system
+            Destroy(this.gameObject);
+        }
     }
 }

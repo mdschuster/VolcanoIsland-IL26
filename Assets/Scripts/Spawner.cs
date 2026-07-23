@@ -31,8 +31,8 @@ public class Spawner : MonoBehaviour
             }
             //do the spawn
             //we need the position (x,y,z)
-            float x = Random.Range(-12f, 3f);
-            float y = 2.0f;
+            float x = Random.Range(-7.5f, 7.5f);
+            float y = 6f;
             Vector3 spawnPosition = new Vector3(x,y,0.0f);
             //what we are spawning (the Enemy)
             //spawn
@@ -46,4 +46,11 @@ public class Spawner : MonoBehaviour
             timer -= Time.deltaTime;
         }
     }
+
+    public void reset()
+    {
+        currentTimeBetweenSpawn = timeBetweenSpawn;
+        timer = currentTimeBetweenSpawn;
+    }
+    
 }

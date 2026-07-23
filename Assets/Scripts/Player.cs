@@ -29,9 +29,25 @@ public class Player : MonoBehaviour
         moveDir = value.Get<Vector2>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void takeDamage(int value)
     {
-        
+        health -= value;
+        if (health <= 0)
+        {
+            //play melting animation
+            //along with a death sound
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void reset()
+    {
+        health=maxHealth;
+        Vector3 position=transform.position;
+        position.x = 0f;
+        position.y = -4f;
+        position.z = 0f;
+        transform.position=position;
+        gameObject.SetActive(true);
     }
 }
